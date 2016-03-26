@@ -18,8 +18,8 @@ from social.backends.oauth import BaseOAuth2
 class CustomOAuth2(BaseOAuth2):
     """Whiteblackcat OAuth authentication backend"""
     name = 'custom'
-    AUTHORIZATION_URL = 'https://accounts.whiteblack-cat.info/o/authorize/'
-    ACCESS_TOKEN_URL = 'https://accounts.whiteblack-cat.info/o/token/'
+    AUTHORIZATION_URL = 'https://example/o/authorize/'
+    ACCESS_TOKEN_URL = 'https://example/o/token/'
     ACCESS_TOKEN_METHOD = "POST"
     SCOPE_SEPARATOR = ','
     #EXTRA_DATA = [
@@ -33,12 +33,12 @@ class CustomOAuth2(BaseOAuth2):
                 'first_name': response.get('nickname') or response.get('first_name')}
 
     def user_data(self, access_token, *args, **kwargs):
-        url='https://accounts.whiteblack-cat.info/api/profiles/basicinfo/'
+        url='https://example/api/profiles/basicinfo/'
         headers = { "AUTHORIZATION":'Bearer %s' % access_token}#'HTTP_ACCEPT' :'application/json',
 
         req = urllib2.Request(url, headers=headers)
         response = urllib2.urlopen(req)
         jsondata = response.read()
         data=json.loads(jsondata)
-        result={"email":data["email"],"first_name":data["nickname"]}
+        result={"id":data["id"],"email":data["email"],"first_name":data["nickname"]}
         return result

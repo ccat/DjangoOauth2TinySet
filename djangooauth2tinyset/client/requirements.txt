@@ -9,6 +9,4 @@ pip
 django-storages
 coverage
 django-nose
-#django-oauth-toolkit
-#django-cors-headers
 python-social-auth
