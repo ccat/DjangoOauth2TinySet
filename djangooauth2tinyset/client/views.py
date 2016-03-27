@@ -30,7 +30,7 @@ class CustomOAuth2(BaseOAuth2):
     def get_user_details(self, response):
         """Return user details from account"""
         return {'email': response.get('email') or '',
-                'first_name': response.get('nickname') or response.get('first_name')}
+                'first_name': response.get('first_name')}
 
     def user_data(self, access_token, *args, **kwargs):
         url='https://example/api/profiles/basicinfo/'
@@ -40,5 +40,5 @@ class CustomOAuth2(BaseOAuth2):
         response = urllib2.urlopen(req)
         jsondata = response.read()
         data=json.loads(jsondata)
-        result={"id":data["id"],"email":data["email"],"first_name":data["nickname"]}
+        result={"id":data["id"],"email":data["email"],"first_name":data["first_name"]}
         return result
