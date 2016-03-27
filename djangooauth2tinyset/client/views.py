@@ -22,10 +22,10 @@ class CustomOAuth2(BaseOAuth2):
     ACCESS_TOKEN_URL = 'https://example/o/token/'
     ACCESS_TOKEN_METHOD = "POST"
     SCOPE_SEPARATOR = ','
-    #EXTRA_DATA = [
-    #    ('id', 'id'),
+    EXTRA_DATA = [
+        ('id', 'id'),
     #    ('expires', 'expires')
-    #]
+    ]
 
     def get_user_details(self, response):
         """Return user details from account"""
